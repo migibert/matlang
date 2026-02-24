@@ -1,0 +1,9 @@
+// Muay Thai states
+
+state StrikingRange roles {
+    Orthodox, Southpaw
+}
+
+state ThaiClinch roles {
+    Dominant, Controlled
+}

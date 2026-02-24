@@ -1,0 +1,21 @@
+// BJJ sequences - ordered action progressions
+
+sequence BasicTakedownToGuard:
+    Takedown: Standing[Neutral] -> ClosedGuard[Top]
+
+sequence GuardPassSequence:
+    OpenGuard: ClosedGuard[Top] -> OpenGuard[Top]
+    PassToSide: OpenGuard[Top] -> SideControl[Top]
+
+sequence SideToMount:
+    TransitionToKneeOnBelly: SideControl[Top] -> KneeOnBelly[Top]
+    MountEntry: KneeOnBelly[Top] -> Mount[Top]
+
+sequence MountToSubmission:
+    ArmbarSetup: Mount[Top] -> ArmbarPosition[Top]
+    FinishArmbar: ArmbarPosition[Top] -> ArmbarPosition[Top]
+
+sequence MountEscape:
+    BridgeAndShrimp: Mount[Bottom] -> HalfGuard[Bottom]
+    RecoverClosedGuard: HalfGuard[Bottom] -> ClosedGuard[Bottom]
+

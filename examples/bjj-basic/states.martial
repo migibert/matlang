@@ -1,0 +1,31 @@
+// Basic BJJ states
+
+state Standing
+
+state ClosedGuard roles {
+    Top, Bottom
+}
+
+state OpenGuard roles {
+    Top, Bottom
+}
+
+state HalfGuard roles {
+    Top, Bottom
+}
+
+state SideControl roles {
+    Top, Bottom
+}
+
+state KneeOnBelly roles {
+    Top, Bottom
+}
+
+state Mount roles {
+    Top, Bottom
+}
+
+state ArmbarPosition roles {
+    Top, Bottom
+}
