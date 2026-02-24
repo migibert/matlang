@@ -1,0 +1,5 @@
+// Muay Thai stances and positions
+
+roles {
+    Orthodox, Southpaw, Dominant, Controlled
+}

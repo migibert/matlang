@@ -1,0 +1,20 @@
+// Muay Thai combinations and sequences
+
+// Classic striking combo - all self-transitions
+sequence JabCrossClinch:
+    Jab: StrikingRange[Orthodox] -> StrikingRange[Orthodox]
+    Cross: StrikingRange[Orthodox] -> StrikingRange[Orthodox]
+    ClinchEntry: StrikingRange[Orthodox] -> ThaiClinch[Dominant]
+
+// Kicks from orthodox stance
+sequence LowKickCombo:
+    Jab: StrikingRange[Orthodox] -> StrikingRange[Orthodox]
+    LeadLegLowKick: StrikingRange[Orthodox] -> StrikingRange[Orthodox]
+    Cross: StrikingRange[Orthodox] -> StrikingRange[Orthodox]
+    RearLegLowKick: StrikingRange[Orthodox] -> StrikingRange[Orthodox]
+
+// From clinch
+sequence ClinchKneeSequence:
+    KneeStrike: ThaiClinch[Dominant] -> ThaiClinch[Dominant]
+    KneeStrike2: ThaiClinch[Dominant] -> ThaiClinch[Dominant]
+    BreakClinch: ThaiClinch[Dominant] -> StrikingRange[Orthodox]

@@ -1,0 +1,6 @@
+// Role definitions for BJJ
+// Roles can be split across multiple files and will be merged
+
+roles {
+    Top, Bottom, Neutral
+}
