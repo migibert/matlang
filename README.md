@@ -1,6 +1,6 @@
 # Martial Lang
 
-A domain-specific language (DSL) for modeling martial arts techniques and pedagogical sequences. Define roles (attacker/defender), states (positions), and sequences (step-by-step progressions) to create structured martial arts knowledge systems.
+A domain-specific language (DSL) for modeling martial arts positional systems and pedagogical sequences. Define roles (structural positions like Top/Bottom), states (configurations), and sequences (step-by-step progressions) to create structured martial arts knowledge systems.
 
 ## Features
 
@@ -62,32 +62,31 @@ cd my-system
 ### Define Roles (`roles.martial`)
 
 ```
-roles [attacker, defender]
+roles {
+    Top, Bottom, Neutral
+}
 ```
 
 ### Define States (`states.martial`)
 
 ```
-state standing {
-  roles: [attacker, defender]
+state Standing
+
+state ClosedGuard roles {
+    Top, Bottom
 }
 
-state closed_guard {
-  roles: [attacker: top, defender: bottom]
-}
-
-state mount {
-  roles: [attacker: top, defender: bottom]
+state Mount roles {
+    Top, Bottom
 }
 ```
 
 ### Define Sequences (`sequences.martial`)
 
 ```
-sequence guard_pass {
-  standing → closed_guard: break_posture
-  closed_guard → mount: pass_guard
-}
+sequence GuardPass:
+    BreakPosture: Standing[Neutral] -> ClosedGuard[Top]
+    PassGuard: ClosedGuard[Top] -> Mount[Top]
 ```
 
 ### Validate Your System
@@ -104,7 +103,7 @@ Validates all `.martial` files in the directory:
 
 ```bash
 mat validate examples/bjj-basic
-# ✓ Successfully validated system: bjj-basic
+# ✓ System 'bjj-basic' is valid!
 ```
 
 Checks for:
@@ -127,19 +126,26 @@ JSON structure:
   "system_name": "bjj-basic",
   "nodes": [
     {
-      "state_name": "standing",
-      "role_constraints": {
-        "attacker": [],
-        "defender": []
-      }
+      "state": "Standing",
+      "role": "Neutral"
+    },
+    {
+      "state": "ClosedGuard",
+      "role": "Top"
     }
   ],
   "edges": [
     {
-      "from": "standing",
-      "to": "closed_guard",
-      "action": "pull_guard",
-      "sequence": "basic_sweep"
+      "from": {
+        "state": "Standing",
+        "role": "Neutral"
+      },
+      "to": {
+        "state": "ClosedGuard",
+        "role": "Top"
+      },
+      "action": "Takedown",
+      "sequence": "BasicTakedownToGuard"
     }
   ]
 }
@@ -153,12 +159,6 @@ Outputs DOT format for Graphviz visualization:
 mat dot examples/bjj-basic | dot -Tpng > bjj-graph.png
 ```
 
-Or using the Makefile:
-
-```bash
-make graph SYSTEM=examples/bjj-basic
-```
-
 ### `mat stats <directory>`
 
 Displays system statistics:
@@ -169,13 +169,17 @@ mat stats examples/bjj-basic
 
 Output:
 ```
-System: bjj-basic
-Roles: 2
-States: 4
-Sequences: 2
-Actions: 4
-Reachable states: 4
-Unreachable states: 0
+Graph Statistics for 'bjj-basic':
+  Nodes: 10
+  Edges: 9
+  Self-loops: 1
+
+  Source nodes (no incoming edges):
+    - Mount[Bottom]
+    - Standing[Neutral]
+
+  Sink nodes (no outgoing edges):
+    - ClosedGuard[Bottom]
 ```
 
 ## Language Specification
@@ -184,27 +188,28 @@ See [spec/spec-1.0.md](spec/spec-1.0.md) for the complete language specification
 
 ### Key Concepts
 
-**Roles**: Participants in the system (e.g., `attacker`, `defender`)
+**Roles**: Structural positions in the system (e.g., `Top`, `Bottom`, `Neutral`)
 
 ```
-roles [attacker, defender]
+roles {
+    Top, Bottom, Neutral
+}
 ```
 
 **States**: Positions or configurations in the martial art
 
 ```
-state closed_guard {
-  roles: [attacker: top, defender: bottom]
+state ClosedGuard roles {
+    Top, Bottom
 }
 ```
 
 **Sequences**: Step-by-step progressions through states
 
 ```
-sequence basic_sweep {
-  closed_guard → standing: technical_standup
-  standing → mount: takedown
-}
+sequence BasicSweep:
+    TechnicalStandup: ClosedGuard[Bottom] -> Standing[Neutral]
+    Takedown: Standing[Neutral] -> Mount[Top]
 ```
 
 ### Validation Rules
@@ -213,7 +218,7 @@ sequence basic_sweep {
 2. **Explicit States**: All states must be declared before use
 3. **Valid References**: State and role references must exist
 4. **Chain Connectivity**: In sequences, each step's end state must match the next step's start state
-5. **Role Constraints**: States can specify which roles occupy which positions
+5. **Role Constraints**: States can restrict which roles are valid (if omitted, all roles are allowed)
 
 ## Examples
 
