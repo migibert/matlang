@@ -5,11 +5,12 @@ sequence GuardPullToBerimbolo:
     SitAndPull: Standing[Neutral] -> ClosedGuard[Bottom]
     HipEscape: ClosedGuard[Bottom] -> OpenGuard[Bottom]
     DeLaRivaHook: OpenGuard[Bottom] -> DeLaRivaGuard[Bottom]
-    Babybolo: DeLaRivaGuard[Bottom] -> Back[Top]
+    BeriboloSweep: DeLaRivaGuard[Bottom] -> RearMount[Top]
 
 // Classic toreando guard pass from standing
 sequence ToreandoPass:
     BreakClosedGuard: ClosedGuard[Top] -> OpenGuard[Top]
+    GrabPants: OpenGuard[Top] -> Headquarters[Top]
     ToreandoPass: Headquarters[Top] -> SideControl[Top]
 
 // Side control to mount progression
@@ -21,14 +22,14 @@ sequence SideControlToMount:
 // Mount to armbar finish
 sequence MountToArmbar:
     HighMount: Mount[Top] -> Mount[Top]
-    Armbar: Mount[Top] -> Mount[Top]
+    Armbar: Mount[Top] -> ArmbarPosition[Top]
 
 // Triangle from closed guard
 sequence TriangleFromGuard:
     BreakPosture: ClosedGuard[Bottom] -> ClosedGuard[Bottom]
     Overhook: ClosedGuard[Bottom] -> ClosedGuard[Bottom]
-    Losange: ClosedGuard[Bottom] -> ClosedGuard[Bottom]
-    AngleAndSqueeze: ClosedGuard[Bottom] -> ClosedGuard[Bottom]
+    CutAngle: ClosedGuard[Bottom] -> TrianglePosition[Bottom]
+    AngleAndSqueeze: TrianglePosition[Bottom] -> TrianglePosition[Bottom]
 
 // Half guard sweep to back take
 sequence HalfGuardSweep:

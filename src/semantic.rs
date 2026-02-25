@@ -29,6 +29,7 @@ pub struct MartialSystem {
     pub roles: HashSet<String>,
     pub states: HashMap<String, State>,
     pub sequences: HashMap<String, Sequence>,
+    pub groups: HashMap<String, Vec<String>>,
 }
 
 /// Semantic validator
@@ -39,6 +40,8 @@ pub struct SemanticValidator {
     states: HashMap<String, State>,
     /// All declared sequences
     sequences: HashMap<String, Sequence>,
+    /// All declared groups
+    groups: HashMap<String, Vec<String>>,
 }
 
 impl SemanticValidator {
@@ -48,6 +51,7 @@ impl SemanticValidator {
             roles: HashSet::new(),
             states: HashMap::new(),
             sequences: HashMap::new(),
+            groups: HashMap::new(),
         }
     }
 
@@ -63,6 +67,9 @@ impl SemanticValidator {
                 }
                 Declaration::Sequence(sequence) => {
                     self.add_sequence(sequence)?;
+                }
+                Declaration::Group(group) => {
+                    self.add_group(group)?;
                 }
             }
         }
@@ -123,6 +130,26 @@ impl SemanticValidator {
         Ok(())
     }
 
+    /// Add a group
+    fn add_group(&mut self, group: GroupDecl) -> Result<(), SemanticError> {
+        if group.name.is_empty() {
+            return Err(SemanticError {
+                message: "Group name cannot be empty".to_string(),
+                context: "group declaration".to_string(),
+            });
+        }
+
+        if self.groups.contains_key(&group.name) {
+            return Err(SemanticError {
+                message: format!("Group '{}' is already defined", group.name),
+                context: format!("group {}", group.name),
+            });
+        }
+
+        self.groups.insert(group.name, group.states);
+        Ok(())
+    }
+
     /// Validate the entire system
     pub fn validate(self, system_name: String) -> Result<MartialSystem, SemanticError> {
         // Check that we have at least one role
@@ -139,11 +166,15 @@ impl SemanticValidator {
         // Validate sequences
         self.validate_sequences()?;
 
+        // Validate groups
+        self.validate_groups()?;
+
         Ok(MartialSystem {
             name: system_name,
             roles: self.roles,
             states: self.states,
             sequences: self.sequences,
+            groups: self.groups,
         })
     }
 
@@ -174,6 +205,32 @@ impl SemanticValidator {
                             context: format!("state {}", state_name),
                         });
                     }
+                }
+            }
+        }
+        Ok(())
+    }
+
+    /// Validate all groups
+    fn validate_groups(&self) -> Result<(), SemanticError> {
+        for (group_name, states) in &self.groups {
+            if states.is_empty() {
+                return Err(SemanticError {
+                    message: "Group must contain at least one state".to_string(),
+                    context: format!("group {}", group_name),
+                });
+            }
+
+            for state_name in states {
+                if !self.states.contains_key(state_name) {
+                    return Err(SemanticError {
+                        message: format!(
+                            "State '{}' is not defined. Available states: {}",
+                            state_name,
+                            self.states.keys().cloned().collect::<Vec<_>>().join(", ")
+                        ),
+                        context: format!("group {}", group_name),
+                    });
                 }
             }
         }
@@ -400,5 +457,62 @@ mod tests {
         assert_eq!(system.roles.len(), 2);
         assert_eq!(system.states.len(), 2);
         assert_eq!(system.sequences.len(), 1);
+    }
+
+    #[test]
+    fn test_valid_group() {
+        let mut validator = SemanticValidator::new();
+        validator.add_roles(make_roles(vec!["Top", "Bottom"])).unwrap();
+        validator.add_state(make_state("Mount", None)).unwrap();
+        validator.add_state(make_state("SideControl", None)).unwrap();
+        validator.add_state(make_state("Guard", None)).unwrap();
+
+        let group = GroupDecl {
+            name: "TopPositions".to_string(),
+            states: vec!["Mount".to_string(), "SideControl".to_string()],
+        };
+        validator.add_group(group).unwrap();
+
+        let result = validator.validate("Test".to_string());
+        assert!(result.is_ok());
+        let system = result.unwrap();
+        assert_eq!(system.groups.len(), 1);
+        assert!(system.groups.contains_key("TopPositions"));
+        assert_eq!(system.groups["TopPositions"], vec!["Mount", "SideControl"]);
+    }
+
+    #[test]
+    fn test_group_with_undefined_state() {
+        let mut validator = SemanticValidator::new();
+        validator.add_roles(make_roles(vec!["Top"])).unwrap();
+        validator.add_state(make_state("Mount", None)).unwrap();
+
+        let group = GroupDecl {
+            name: "Bad".to_string(),
+            states: vec!["Mount".to_string(), "NonExistent".to_string()],
+        };
+        validator.add_group(group).unwrap();
+
+        let result = validator.validate("Test".to_string());
+        assert!(result.is_err());
+        assert!(result.unwrap_err().message.contains("State 'NonExistent' is not defined"));
+    }
+
+    #[test]
+    fn test_duplicate_group() {
+        let mut validator = SemanticValidator::new();
+
+        let group1 = GroupDecl {
+            name: "Guards".to_string(),
+            states: vec!["A".to_string()],
+        };
+        let group2 = GroupDecl {
+            name: "Guards".to_string(),
+            states: vec!["B".to_string()],
+        };
+        validator.add_group(group1).unwrap();
+        let result = validator.add_group(group2);
+        assert!(result.is_err());
+        assert!(result.unwrap_err().message.contains("already defined"));
     }
 }

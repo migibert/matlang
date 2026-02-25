@@ -39,6 +39,8 @@ pub struct MartialGraph {
     pub system_name: String,
     pub nodes: Vec<Node>,
     pub edges: Vec<Edge>,
+    #[serde(skip_serializing_if = "HashMap::is_empty")]
+    pub groups: HashMap<String, Vec<String>>,
 }
 
 impl MartialGraph {
@@ -79,6 +81,7 @@ impl MartialGraph {
             system_name: system.name.clone(),
             nodes,
             edges,
+            groups: system.groups.clone(),
         }
     }
 
@@ -146,14 +149,44 @@ impl MartialGraph {
         dot.push_str("  rankdir=LR;\n");
         dot.push_str("  node [shape=box, style=rounded];\n\n");
 
-        // Add nodes
+        // Build set of nodes that belong to groups
+        let mut grouped_nodes: HashSet<String> = HashSet::new();
+
+        // Add group subgraphs
+        let mut sorted_groups: Vec<_> = self.groups.iter().collect();
+        sorted_groups.sort_by_key(|(name, _)| (*name).clone());
+
+        for (group_name, group_states) in &sorted_groups {
+            dot.push_str(&format!("  subgraph cluster_{} {{\n", group_name));
+            dot.push_str(&format!("    label=\"{}\";\n", group_name));
+            dot.push_str("    style=dashed;\n");
+            dot.push_str("    color=grey;\n");
+
+            for node in &self.nodes {
+                if group_states.contains(&node.state) {
+                    dot.push_str(&format!(
+                        "    \"{}\" [label=\"{}\\n[{}]\"];\n",
+                        node.id(),
+                        node.state,
+                        node.role
+                    ));
+                    grouped_nodes.insert(node.id());
+                }
+            }
+
+            dot.push_str("  }\n\n");
+        }
+
+        // Add ungrouped nodes
         for node in &self.nodes {
-            dot.push_str(&format!(
-                "  \"{}\" [label=\"{}\\n[{}]\"];\n",
-                node.id(),
-                node.state,
-                node.role
-            ));
+            if !grouped_nodes.contains(&node.id()) {
+                dot.push_str(&format!(
+                    "  \"{}\" [label=\"{}\\n[{}]\"];\n",
+                    node.id(),
+                    node.state,
+                    node.role
+                ));
+            }
         }
 
         dot.push_str("\n");
@@ -277,6 +310,7 @@ mod tests {
             roles,
             states,
             sequences,
+            groups: HashMap::new(),
         }
     }
 

@@ -1,0 +1,16 @@
+// BJJ position groupings
+
+// Guard family - various open and closed guard variations
+group GuardFamily {
+    ClosedGuard, OpenGuard, DeLaRivaGuard, HalfGuard
+}
+
+// Top control positions - dominant pins and pressure positions
+group TopControl {
+    SideControl, KesaGatame, KneeOnBelly, Mount, RearMount
+}
+
+// Submission positions - configurations for finishing
+group SubmissionPositions {
+    ArmbarPosition, TrianglePosition
+}

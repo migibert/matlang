@@ -117,15 +117,16 @@ impl Parser {
 
     /// Parse a declaration
     ///
-    /// Grammar: declaration ::= roles_decl | state_decl | sequence_decl
+    /// Grammar: declaration ::= roles_decl | state_decl | sequence_decl | group_decl
     fn parse_declaration(&mut self) -> Result<Declaration, ParseError> {
         match self.peek() {
             Token::Roles => Ok(Declaration::Roles(self.parse_roles_decl()?)),
             Token::State => Ok(Declaration::State(self.parse_state_decl()?)),
             Token::Sequence => Ok(Declaration::Sequence(self.parse_sequence_decl()?)),
+            Token::Group => Ok(Declaration::Group(self.parse_group_decl()?)),
             other => Err(ParseError {
                 message: format!(
-                    "Expected declaration (roles, state, or sequence), got {}",
+                    "Expected declaration (roles, state, sequence, or group), got {}",
                     other
                 ),
                 position: self.current_position(),
@@ -235,6 +236,27 @@ impl Parser {
         self.expect(Token::RightBracket)?;
 
         Ok(StateRef { state, role })
+    }
+
+    /// Parse a group declaration
+    ///
+    /// Grammar: group_decl ::= "group" IDENTIFIER "{" IDENTIFIER { "," IDENTIFIER } "}"
+    fn parse_group_decl(&mut self) -> Result<GroupDecl, ParseError> {
+        self.expect(Token::Group)?;
+        let name = self.expect_identifier()?;
+        self.expect(Token::LeftBrace)?;
+
+        let mut states = Vec::new();
+        states.push(self.expect_identifier()?);
+
+        while self.peek() == &Token::Comma {
+            self.advance(); // consume comma
+            states.push(self.expect_identifier()?);
+        }
+
+        self.expect(Token::RightBrace)?;
+
+        Ok(GroupDecl { name, states })
     }
 }
 
@@ -365,5 +387,37 @@ sequence GuardPass:
 "#;
         let result = parse_input(input).unwrap();
         assert_eq!(result.declarations.len(), 4);
+    }
+
+    #[test]
+    fn test_parse_group() {
+        let input = r#"
+group GuardFamily {
+    ClosedGuard, OpenGuard, HalfGuard
+}
+"#;
+        let result = parse_input(input).unwrap();
+        assert_eq!(result.declarations.len(), 1);
+        match &result.declarations[0] {
+            Declaration::Group(group) => {
+                assert_eq!(group.name, "GuardFamily");
+                assert_eq!(group.states, vec!["ClosedGuard", "OpenGuard", "HalfGuard"]);
+            }
+            _ => panic!("Expected Group declaration"),
+        }
+    }
+
+    #[test]
+    fn test_parse_group_single_state() {
+        let input = "group Singleton { Mount }";
+        let result = parse_input(input).unwrap();
+        assert_eq!(result.declarations.len(), 1);
+        match &result.declarations[0] {
+            Declaration::Group(group) => {
+                assert_eq!(group.name, "Singleton");
+                assert_eq!(group.states, vec!["Mount"]);
+            }
+            _ => panic!("Expected Group declaration"),
+        }
     }
 }

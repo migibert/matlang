@@ -175,6 +175,7 @@ program          ::= declaration+
 declaration      ::= roles_decl
                    | state_decl
                    | sequence_decl
+                   | group_decl
 
 roles_decl       ::= "roles" "{"
                       IDENTIFIER { "," IDENTIFIER }
@@ -192,6 +193,10 @@ sequence_decl    ::= "sequence" IDENTIFIER ":"
 sequence_step    ::= IDENTIFIER ":" state_ref "->" state_ref
 
 state_ref        ::= IDENTIFIER "[" IDENTIFIER "]"
+
+group_decl       ::= "group" IDENTIFIER "{"
+                      IDENTIFIER { "," IDENTIFIER }
+                     "}"
 ```
 
 **Multi-file Support:**
@@ -212,6 +217,7 @@ Within a system:
 * State identifiers must be unique
 * Role identifiers must be unique
 * Sequence identifiers must be unique
+* Group identifiers must be unique
 * Action names within a sequence must be unique
 
 ---
@@ -266,6 +272,24 @@ valid_roles(s) = R
 ```
 
 This reduces verbosity while preserving type safety.
+
+---
+
+## 4.5 Group Validity
+
+For each group declaration:
+
+```
+group G { s1, s2, ..., sN }
+```
+
+The following must hold:
+
+1. All referenced states must be defined: `s1, s2, ..., sN ∈ S`
+2. Group must contain at least one state: `N ≥ 1`
+3. A state may appear in multiple groups
+
+Groups are organizational metadata. They do not affect the formal model `M = (S, R, V, Q)` but provide structural annotations for visualization (DOT subgraph clusters) and analysis.
 
 ---
 

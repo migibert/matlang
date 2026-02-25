@@ -15,6 +15,7 @@ pub enum Declaration {
     Roles(RolesDecl),
     State(State),
     Sequence(Sequence),
+    Group(GroupDecl),
 }
 
 /// A roles declaration
@@ -67,4 +68,18 @@ pub struct SequenceStep {
     pub action_name: String,
     pub from: StateRef,
     pub to: StateRef,
+}
+
+/// A group declaration - organizational clustering of related states
+///
+/// Example:
+/// ```text
+/// group ClosedGuardFamily {
+///     ClosedGuard, WilliamsGuard, RubberGuard
+/// }
+/// ```
+#[derive(Debug, Clone, PartialEq)]
+pub struct GroupDecl {
+    pub name: String,
+    pub states: Vec<String>,
 }

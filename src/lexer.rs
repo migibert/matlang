@@ -11,6 +11,7 @@ pub enum Token {
     Roles,
     State,
     Sequence,
+    Group,
     
     // Identifiers
     Identifier(String),
@@ -34,6 +35,7 @@ impl fmt::Display for Token {
             Token::Roles => write!(f, "roles"),
             Token::State => write!(f, "state"),
             Token::Sequence => write!(f, "sequence"),
+            Token::Group => write!(f, "group"),
             Token::Identifier(s) => write!(f, "{}", s),
             Token::LeftBrace => write!(f, "{{"),
             Token::RightBrace => write!(f, "}}"),
@@ -185,6 +187,7 @@ impl Lexer {
             "roles" => Token::Roles,
             "state" => Token::State,
             "sequence" => Token::Sequence,
+            "group" => Token::Group,
             _ => Token::Identifier(result),
         };
         
@@ -372,5 +375,20 @@ state Mount roles {
         assert_eq!(tokens[7].token, Token::Identifier("Role".to_string()));
         assert_eq!(tokens[8].token, Token::RightBracket);
         assert_eq!(tokens[9].token, Token::Arrow);
+    }
+
+    #[test]
+    fn test_group_declaration() {
+        let input = "group GuardFamily { ClosedGuard, OpenGuard }";
+        let mut lexer = Lexer::new(input);
+        let tokens = lexer.tokenize().unwrap();
+
+        assert_eq!(tokens[0].token, Token::Group);
+        assert_eq!(tokens[1].token, Token::Identifier("GuardFamily".to_string()));
+        assert_eq!(tokens[2].token, Token::LeftBrace);
+        assert_eq!(tokens[3].token, Token::Identifier("ClosedGuard".to_string()));
+        assert_eq!(tokens[4].token, Token::Comma);
+        assert_eq!(tokens[5].token, Token::Identifier("OpenGuard".to_string()));
+        assert_eq!(tokens[6].token, Token::RightBrace);
     }
 }

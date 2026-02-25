@@ -186,6 +186,19 @@ fn test_invalid_undefined_state() {
 }
 
 #[test]
+fn test_invalid_undefined_group_state() {
+    let result = parse_martial_system("tests/fixtures/invalid_undefined_group_state");
+    
+    assert!(result.is_err(), "System with group referencing undefined state should fail validation");
+    let error = result.unwrap_err();
+    assert!(
+        error.contains("SideControl") && error.contains("not defined"),
+        "Error should mention undefined state 'SideControl' in group, got: {}",
+        error
+    );
+}
+
+#[test]
 fn test_multi_file_roles() {
     let result = parse_martial_system("tests/fixtures/multi_file_roles");
     
@@ -264,6 +277,24 @@ fn test_bjj_example_system() {
     assert_eq!(triangle.steps[0].from.state, "ClosedGuard");
     assert_eq!(triangle.steps[0].from.role, "Bottom");
     assert_eq!(triangle.steps[2].to.state, "TrianglePosition");
+    
+    // Verify groups
+    assert_eq!(system.groups.len(), 3);
+    assert!(system.groups.contains_key("GuardFamily"));
+    assert!(system.groups.contains_key("TopControl"));
+    assert!(system.groups.contains_key("SubmissionPositions"));
+    
+    let guard_family = &system.groups["GuardFamily"];
+    assert_eq!(guard_family.len(), 4);
+    assert!(guard_family.contains(&"ClosedGuard".to_string()));
+    assert!(guard_family.contains(&"OpenGuard".to_string()));
+    assert!(guard_family.contains(&"DeLaRivaGuard".to_string()));
+    assert!(guard_family.contains(&"HalfGuard".to_string()));
+    
+    let top_control = &system.groups["TopControl"];
+    assert_eq!(top_control.len(), 5);
+    assert!(top_control.contains(&"Mount".to_string()));
+    assert!(top_control.contains(&"RearMount".to_string()));
 }
 
 #[test]

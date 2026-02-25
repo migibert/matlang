@@ -10,7 +10,7 @@ use std::path::Path;
 use std::process;
 
 fn main() {
-    println!("mat - Martial Art Tool v0.1.0");
+    eprintln!("mat - Martial Art Tool v0.1.0");
     
     let args: Vec<String> = env::args().collect();
     if args.len() < 2 {
@@ -66,11 +66,11 @@ fn main() {
 }
 
 fn print_usage() {
-    println!("\nUsage:");
-    println!("  mat validate <directory>     # Validate a martial system");
-    println!("  mat graph <directory>        # Export graph as JSON");
-    println!("  mat dot <directory>          # Export graph as DOT (Graphviz)");
-    println!("  mat stats <directory>        # Show graph statistics");
+    eprintln!("\nUsage:");
+    eprintln!("  mat validate <directory>     # Validate a martial system");
+    eprintln!("  mat graph <directory>        # Export graph as JSON");
+    eprintln!("  mat dot <directory>          # Export graph as DOT (Graphviz)");
+    eprintln!("  mat stats <directory>        # Show graph statistics");
 }
 
 fn validate_command(path: &str) {
@@ -89,6 +89,12 @@ fn validate_command(path: &str) {
     println!("  Sequences: {}", system.sequences.len());
     for seq_name in system.sequences.keys() {
         println!("    - {}", seq_name);
+    }
+    if !system.groups.is_empty() {
+        println!("  Groups: {}", system.groups.len());
+        for (group_name, states) in &system.groups {
+            println!("    - {} ({})", group_name, states.join(", "));
+        }
     }
 }
 
@@ -163,7 +169,7 @@ fn load_and_validate_system(path: &str) -> semantic::MartialSystem {
         process::exit(1);
     }
     
-    println!("\nValidating martial system: {}", path);
+    eprintln!("\nValidating martial system: {}", path);
     
     // Get system name from directory
     let system_name = path_obj
@@ -186,16 +192,16 @@ fn load_and_validate_system(path: &str) -> semantic::MartialSystem {
         process::exit(1);
     }
     
-    println!("Found {} .martial files:", martial_files.len());
+    eprintln!("Found {} .martial files:", martial_files.len());
     for file in &martial_files {
-        println!("  - {}", file);
+        eprintln!("  - {}", file);
     }
     
     // Parse all files
     let mut validator = semantic::SemanticValidator::new();
     
     for file_path in &martial_files {
-        println!("\nParsing {}...", file_path);
+        eprintln!("\nParsing {}...", file_path);
         
         let content = match fs::read_to_string(file_path) {
             Ok(c) => c,
@@ -231,11 +237,11 @@ fn load_and_validate_system(path: &str) -> semantic::MartialSystem {
             process::exit(1);
         }
         
-        println!("  ✓ Parsed successfully");
+        eprintln!("  ✓ Parsed successfully");
     }
     
     // Validate the complete system
-    println!("\nValidating system semantics...");
+    eprintln!("\nValidating system semantics...");
     match validator.validate(system_name.clone()) {
         Ok(system) => system,
         Err(e) => {
