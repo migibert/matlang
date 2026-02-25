@@ -1,0 +1,6 @@
+// Defines only Tori (technique performer)
+// Uke (technique receiver) is intentionally missing
+
+roles {
+    Tori
+}

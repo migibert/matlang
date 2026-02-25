@@ -1,0 +1,18 @@
+// Boxing combinations
+
+// Classic 1-2
+sequence JabCross:
+    Jab: LongRange[Orthodox] -> MidRange[Orthodox]
+    Cross: MidRange[Orthodox] -> MidRange[Orthodox]
+
+// 1-2-3 (jab, cross, lead hook)
+sequence JabCrossHook:
+    Jab: LongRange[Orthodox] -> MidRange[Orthodox]
+    Cross: MidRange[Orthodox] -> MidRange[Orthodox]
+    LeadHook: MidRange[Orthodox] -> InsideRange[Orthodox]
+
+// Inside fighting: body then head
+sequence BodyToHeadCombo:
+    JabToBody: InsideRange[Orthodox] -> InsideRange[Orthodox]
+    RightUppercut: InsideRange[Orthodox] -> InsideRange[Orthodox]
+    LeadHookUpstairs: InsideRange[Orthodox] -> InsideRange[Orthodox]

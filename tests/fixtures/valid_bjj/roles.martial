@@ -1,0 +1,5 @@
+// BJJ positional roles
+
+roles {
+    Top, Bottom, Neutral
+}

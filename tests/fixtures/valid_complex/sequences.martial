@@ -1,0 +1,28 @@
+// Wrestling sequences
+
+sequence CollarTieSnapdown:
+    InitialContact: NeutralStance[Neutral] -> CollarTie[Offensive]
+    SnapDown: CollarTie[Offensive] -> FrontHeadlock[Offensive]
+
+sequence FrontHeadlockSeries:
+    GoAround: FrontHeadlock[Offensive] -> BackControl[Offensive]
+    MatReturn: BackControl[Offensive] -> TopRide[Offensive]
+
+sequence SingleLegTakedown:
+    ShootIn: CollarTie[Offensive] -> SingleLeg[Offensive]
+    RunThePipe: SingleLeg[Offensive] -> SingleLeg[Offensive]
+    LiftAndDump: SingleLeg[Offensive] -> TopRide[Offensive]
+
+sequence DoubleLegBlast:
+    LevelChange: CollarTie[Offensive] -> DoubleLeg[Offensive]
+    DriveThrough: DoubleLeg[Offensive] -> DoubleLeg[Offensive]
+    CutTheCorner: DoubleLeg[Offensive] -> TopRide[Offensive]
+
+sequence DoubleUnderhookSeries:
+    PummelInside: CollarTie[Offensive] -> DoubleUnderhooks[Offensive]
+    BodyLockThrow: DoubleUnderhooks[Offensive] -> TopRide[Offensive]
+
+sequence DuckUnderBackTake:
+    DuckUnder: CollarTie[Offensive] -> BackControl[Offensive]
+    LockHands: BackControl[Offensive] -> BackControl[Offensive]
+    MatReturn: BackControl[Offensive] -> TopRide[Offensive]

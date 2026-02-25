@@ -1,0 +1,31 @@
+// Wrestling positions
+
+state NeutralStance
+
+state CollarTie roles {
+    Offensive, Defensive
+}
+
+state DoubleUnderhooks roles {
+    Offensive, Defensive
+}
+
+state SingleLeg roles {
+    Offensive, Defensive
+}
+
+state DoubleLeg roles {
+    Offensive, Defensive
+}
+
+state FrontHeadlock roles {
+    Offensive, Defensive
+}
+
+state BackControl roles {
+    Offensive, Defensive
+}
+
+state TopRide roles {
+    Offensive, Defensive
+}

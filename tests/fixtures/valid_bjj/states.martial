@@ -1,0 +1,43 @@
+// BJJ positions
+
+state Standing
+
+state ClosedGuard roles {
+    Top, Bottom
+}
+
+state OpenGuard roles {
+    Top, Bottom
+}
+
+state DeLaRivaGuard roles {
+    Top, Bottom
+}
+
+state Headquarters roles {
+    Top, Bottom
+}
+
+state HalfGuard roles {
+    Top, Bottom
+}
+
+state SideControl roles {
+    Top, Bottom
+}
+
+state KesaGatame roles {
+    Top, Bottom
+}
+
+state Mount roles {
+    Top, Bottom
+}
+
+state RearMount roles {
+    Top, Bottom
+}
+
+state TurtlePosition roles {
+    Top, Bottom
+}

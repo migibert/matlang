@@ -1,0 +1,11 @@
+// Boxing range states
+
+state LongRange
+
+state MidRange roles {
+    Orthodox, Southpaw
+}
+
+state InsideRange roles {
+    Orthodox, Southpaw
+}

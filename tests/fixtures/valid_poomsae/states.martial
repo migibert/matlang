@@ -1,0 +1,11 @@
+// Taekwondo stances (seogi)
+
+state Naranhi
+
+state ApKubi roles {
+    Wen, Orun
+}
+
+state ApSeogi roles {
+    Wen, Orun
+}

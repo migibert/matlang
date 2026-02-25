@@ -1,0 +1,4 @@
+// References states that are never declared
+
+sequence CompetitionExchange:
+    DollioChagi: FightingStance[Chung] -> ClosingDistance[Chung]

@@ -1,0 +1,5 @@
+state Standing
+
+state Clinch roles {
+    Striker, Grappler
+}

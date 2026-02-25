@@ -1,0 +1,32 @@
+// Real BJJ technique sequences
+
+// Guard pull to De La Riva to berimbolo back take
+sequence GuardPullToBerimbolo:
+    SitAndPull: Standing[Neutral] -> ClosedGuard[Bottom]
+    HipEscapeToOpen: ClosedGuard[Bottom] -> OpenGuard[Bottom]
+    DeLaRivaHook: OpenGuard[Bottom] -> DeLaRivaGuard[Bottom]
+    BeriboloSweep: DeLaRivaGuard[Bottom] -> RearMount[Top]
+
+// Classic toreando guard pass
+sequence ToreandoPass:
+    BreakClosedGuard: ClosedGuard[Top] -> OpenGuard[Top]
+    GripPantsAtKnee: OpenGuard[Top] -> Headquarters[Top]
+    ToreandoSmash: Headquarters[Top] -> SideControl[Top]
+
+// Side control to back mount via gift wrap
+sequence GiftWrapToBack:
+    TransitionToKesa: SideControl[Top] -> KesaGatame[Top]
+    GiftWrapGrip: KesaGatame[Top] -> KesaGatame[Top]
+    RollToBackMount: KesaGatame[Top] -> RearMount[Top]
+
+// Half guard recovery (bottom perspective)
+sequence HalfGuardRecovery:
+    GetUnderhook: HalfGuard[Bottom] -> HalfGuard[Bottom]
+    DogFight: HalfGuard[Bottom] -> HalfGuard[Bottom]
+    HipEscapeRecover: HalfGuard[Bottom] -> ClosedGuard[Bottom]
+
+// Turtle attack sequence to rear mount
+sequence TurtleToRearMount:
+    SnapdownToTurtle: Standing[Neutral] -> TurtlePosition[Top]
+    SeatbeltGrip: TurtlePosition[Top] -> TurtlePosition[Top]
+    HooksIn: TurtlePosition[Top] -> RearMount[Top]

@@ -1,0 +1,4 @@
+// Wrestling system roles
+roles {
+    Offensive, Defensive, Neutral
+}

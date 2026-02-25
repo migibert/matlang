@@ -1,0 +1,6 @@
+// Osoto Gari (major outer reap) requires both Tori and Uke,
+// but Uke is never declared as a role
+
+state OsotoGari roles {
+    Tori, Uke
+}

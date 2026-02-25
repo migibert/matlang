@@ -1,0 +1,5 @@
+// Taekwondo competition roles (Chung=blue, Hong=red)
+
+roles {
+    Chung, Hong
+}

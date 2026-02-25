@@ -1,0 +1,16 @@
+// Taegeuk Il Jang - first Kukkiwon poomsae
+
+// First line: turn left, arae makgi, step forward, momtong bandae jireugi
+sequence TaegeukIlJangFirstLine:
+    AraeMakgi: Naranhi[Orun] -> ApKubi[Wen]
+    MomtongBandaeJireugi: ApKubi[Wen] -> ApSeogi[Orun]
+
+// Second line: turn 180, arae makgi, step forward, momtong bandae jireugi
+sequence TaegeukIlJangSecondLine:
+    AraeMakgi: ApSeogi[Orun] -> ApKubi[Orun]
+    MomtongBandaeJireugi: ApKubi[Orun] -> ApSeogi[Wen]
+
+// Third line: turn 90, momtong makgi, step forward, momtong ap jireugi
+sequence TaegeukIlJangThirdLine:
+    MomtongMakgi: ApSeogi[Wen] -> ApKubi[Wen]
+    MomtongApJireugi: ApKubi[Wen] -> ApKubi[Orun]

@@ -1,0 +1,19 @@
+// Heian Shodan - first Shotokan karate kata
+
+// First line: turn left, gedan barai, step forward, chudan oi-zuki
+sequence HeianShodanFirstLine:
+    GedanBarai: Yoi[Migi] -> ZenkutsuDachi[Hidari]
+    ChudanOiZuki: ZenkutsuDachi[Hidari] -> ZenkutsuDachi[Migi]
+
+// Second line: turn 180, gedan barai, tetsui uchi, step forward, oi-zuki
+sequence HeianShodanSecondLine:
+    GedanBarai: ZenkutsuDachi[Migi] -> ZenkutsuDachi[Migi]
+    TetsuiUchi: ZenkutsuDachi[Migi] -> ZenkutsuDachi[Migi]
+    ChudanOiZuki: ZenkutsuDachi[Migi] -> ZenkutsuDachi[Hidari]
+
+// Third line: turn left, gedan barai, three stepping age-uke with kiai on last
+sequence HeianShodanThirdLine:
+    GedanBarai: ZenkutsuDachi[Hidari] -> ZenkutsuDachi[Hidari]
+    AgeUke: ZenkutsuDachi[Hidari] -> ZenkutsuDachi[Migi]
+    AgeUkeStep: ZenkutsuDachi[Migi] -> ZenkutsuDachi[Hidari]
+    AgeUkeKiai: ZenkutsuDachi[Hidari] -> ZenkutsuDachi[Migi]

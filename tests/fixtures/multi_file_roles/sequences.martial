@@ -1,0 +1,8 @@
+// MMA striker and grappler pathways
+
+sequence StrikerClinchWork:
+    ClinchEntry: Standing[Striker] -> Clinch[Striker]
+    DirtyBoxing: Clinch[Striker] -> Clinch[Striker]
+
+sequence GrapplerClinchWork:
+    BodyLockAttempt: Clinch[Grappler] -> Clinch[Grappler]

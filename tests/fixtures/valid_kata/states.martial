@@ -1,0 +1,11 @@
+// Karate stances (dachi)
+
+state Yoi
+
+state ZenkutsuDachi roles {
+    Hidari, Migi
+}
+
+state KokutsuDachi roles {
+    Hidari, Migi
+}
