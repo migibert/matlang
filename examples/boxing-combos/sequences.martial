@@ -1,0 +1,35 @@
+// Boxing combinations
+
+// Classic 1-2 (jab, cross)
+sequence JabCross:
+    Jab: LongRange[Orthodox] -> MidRange[Orthodox]
+    Cross: MidRange[Orthodox] -> MidRange[Orthodox]
+
+// 1-2-3-2 (jab, cross, hook, cross) - four punch combination
+sequence JabCrossHookCross:
+    Jab: LongRange[Orthodox] -> MidRange[Orthodox]
+    Cross: MidRange[Orthodox] -> MidRange[Orthodox]
+    LeadHook: MidRange[Orthodox] -> InsideRange[Orthodox]
+    CrossCounter: InsideRange[Orthodox] -> MidRange[Orthodox]
+
+// Body work: jab, cross, hook to the body, uppercut
+sequence BodyAttack:
+    Jab: LongRange[Orthodox] -> MidRange[Orthodox]
+    Cross: MidRange[Orthodox] -> MidRange[Orthodox]
+    LeadHookBody: MidRange[Orthodox] -> InsideRange[Orthodox]
+    RearUppercut: InsideRange[Orthodox] -> InsideRange[Orthodox]
+
+// Southpaw counter sequence
+sequence SouthpawCounter:
+    JabFeint: LongRange[Southpaw] -> MidRange[Southpaw]
+    RearHook: MidRange[Southpaw] -> InsideRange[Southpaw]
+    LeadUppercut: InsideRange[Southpaw] -> InsideRange[Southpaw]
+    LeadStraight: InsideRange[Southpaw] -> MidRange[Southpaw]
+
+// Inside fighting to clinch
+sequence InsideFightingToClinch:
+    Jab: LongRange[Orthodox] -> MidRange[Orthodox]
+    Cross: MidRange[Orthodox] -> InsideRange[Orthodox]
+    LeadUppercut: InsideRange[Orthodox] -> InsideRange[Orthodox]
+    RearUppercut: InsideRange[Orthodox] -> InsideRange[Orthodox]
+    TieUp: InsideRange[Orthodox] -> Clinch[Orthodox]

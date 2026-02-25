@@ -1,5 +1,6 @@
-// Role definitions for BJJ
-// Roles can be split across multiple files and will be merged
+// BJJ positional roles
+// Top, Bottom describe who is above/below
+// Neutral for standing engagements
 
 roles {
     Top, Bottom, Neutral

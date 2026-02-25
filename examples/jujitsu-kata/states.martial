@@ -1,0 +1,46 @@
+// Traditional Jujitsu structural configurations
+
+// Standing - upright natural posture
+state Standing roles {
+    Tori, Uke
+}
+
+// Wrist grab configuration
+state KatateDori roles {
+    Tori, Uke
+}
+
+// Lapel grab configuration
+state MunadoriGrab roles {
+    Tori, Uke
+}
+
+// Clinch - chest to chest clinch position
+state Clinch roles {
+    Tori, Uke
+}
+
+// Hip loaded - opponent loaded on hip for throw
+state HipLoaded roles {
+    Tori, Uke
+}
+
+// Kuzushi - balance broken
+state Kuzushi roles {
+    Tori, Uke
+}
+
+// Ground pin - opponent immobilized on ground
+state GroundPin roles {
+    Tori, Uke
+}
+
+// Joint lock applied
+state JointLock roles {
+    Tori, Uke
+}
+
+// Zanshin - technique completed, awareness maintained
+state Zanshin roles {
+    Tori, Uke
+}

@@ -1,0 +1,36 @@
+// Judo technique sequences
+
+// Failed uchi-mata chaining to ouchi-gari
+// Classic combination: inner thigh reap fails, opponent steps back,
+// chain to major inner reap catching the retreating leg
+sequence UchiMataToOuchiGari:
+    EstablishGrip: ShizenTai[Tori] -> KumiKata[Tori]
+    KuzushiForward: KumiKata[Tori] -> Kuzushi[Tori]
+    UchiMataEntry: Kuzushi[Tori] -> Tsukuri[Tori]
+    UchiMataFails: Tsukuri[Tori] -> KumiKata[Tori]
+    OuchiGariReap: KumiKata[Tori] -> NeWaza[Tori]
+
+// Osoto-gari to Kosoto-gake combination
+// Major outer reap blocked, chain to minor outer hook
+sequence OsotoToKosoto:
+    EstablishGrip: ShizenTai[Tori] -> KumiKata[Tori]
+    KuzushiBackward: KumiKata[Tori] -> Kuzushi[Tori]
+    OsotoGariAttempt: Kuzushi[Tori] -> Tsukuri[Tori]
+    OpponentResists: Tsukuri[Tori] -> KumiKata[Tori]
+    KosotoGake: KumiKata[Tori] -> NeWaza[Tori]
+
+// Seoi-nage to ground transition
+// Shoulder throw lands, transition immediately to pin
+sequence SeoiNageToOsaekomi:
+    EstablishGrip: ShizenTai[Tori] -> KumiKata[Tori]
+    KuzushiForward: KumiKata[Tori] -> Kuzushi[Tori]
+    SeoiNageEntry: Kuzushi[Tori] -> Tsukuri[Tori]
+    ExecuteThrow: Tsukuri[Tori] -> NeWaza[Tori]
+    KesaGatamePin: NeWaza[Tori] -> Osaekomi[Tori]
+
+// Turnover from turtle to pin
+// Opponent turtles after failed throw, attack the turtle
+sequence TurtleTurnover:
+    OpponentTurtles: NeWaza[Tori] -> Turtle[Tori]
+    BreakTurtle: Turtle[Tori] -> NeWaza[Tori]
+    YokoShihoGatame: NeWaza[Tori] -> Osaekomi[Tori]

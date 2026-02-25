@@ -1,0 +1,6 @@
+// Taekwondo poomsae roles
+// Wen (left) and Orun (right) indicate the leading side
+
+roles {
+    Wen, Orun
+}

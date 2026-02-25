@@ -1,0 +1,36 @@
+// Taegeuk Il Jang - first Kukkiwon poomsae (18 movements)
+
+// First line: turn left, arae makgi in ap kubi, step forward momtong bandae jireugi
+sequence TaegeukIlJangFirstLine:
+    AraeMakgi: Naranhi[Orun] -> ApKubi[Wen]
+    MomtongBandaeJireugi: ApKubi[Wen] -> ApSeogi[Orun]
+
+// Second line: turn 180, arae makgi in ap kubi, step forward momtong bandae jireugi
+sequence TaegeukIlJangSecondLine:
+    AraeMakgi: ApSeogi[Orun] -> ApKubi[Orun]
+    MomtongBandaeJireugi: ApKubi[Orun] -> ApSeogi[Wen]
+
+// Third line: turn 90, momtong makgi in ap kubi, step forward momtong ap jireugi
+sequence TaegeukIlJangThirdLine:
+    MomtongMakgi: ApSeogi[Wen] -> ApKubi[Wen]
+    MomtongApJireugi: ApKubi[Wen] -> ApKubi[Orun]
+
+// Taegeuk Ee Jang - second Kukkiwon poomsae
+
+// First line: arae makgi, ap chagi, momtong jireugi
+sequence TaegeukEeJangFirstLine:
+    AraeMakgi: Naranhi[Orun] -> ApKubi[Wen]
+    ApChagi: ApKubi[Wen] -> ApKubi[Wen]
+    MomtongJireugi: ApKubi[Wen] -> ApSeogi[Orun]
+
+// Second line: momtong makgi, ap chagi, arae makgi
+sequence TaegeukEeJangSecondLine:
+    MomtongMakgi: ApSeogi[Orun] -> ApKubi[Orun]
+    ApChagi: ApKubi[Orun] -> ApKubi[Orun]
+    AraeMakgi: ApKubi[Orun] -> ApSeogi[Wen]
+
+// Third line: olgul makgi, ap chagi, momtong bandae jireugi
+sequence TaegeukEeJangThirdLine:
+    OlgulMakgi: ApSeogi[Wen] -> ApKubi[Wen]
+    ApChagi: ApKubi[Wen] -> ApKubi[Wen]
+    MomtongBandaeJireugi: ApKubi[Wen] -> ApKubi[Orun]

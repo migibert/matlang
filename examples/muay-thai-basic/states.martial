@@ -1,9 +1,21 @@
 // Muay Thai states
 
+// StrikingRange - punching and kicking distance
 state StrikingRange roles {
     Orthodox, Southpaw
 }
 
+// Thai clinch - double collar tie, plum position
 state ThaiClinch roles {
+    Dominant, Controlled
+}
+
+// KickingRange - long distance, teep and round kick distance
+state KickingRange roles {
+    Orthodox, Southpaw
+}
+
+// SingleCollarTie - one hand on neck, the other free
+state SingleCollarTie roles {
     Dominant, Controlled
 }

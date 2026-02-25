@@ -1,0 +1,19 @@
+// Shotokan karate stances (dachi)
+
+// Yoi - ready stance, feet together
+state Yoi
+
+// Zenkutsu-dachi - front stance, deep forward lean
+state ZenkutsuDachi roles {
+    Hidari, Migi
+}
+
+// Kokutsu-dachi - back stance, weight on rear leg
+state KokutsuDachi roles {
+    Hidari, Migi
+}
+
+// Kiba-dachi - horse riding stance, weight centered
+state KibaDachi roles {
+    Hidari, Migi
+}

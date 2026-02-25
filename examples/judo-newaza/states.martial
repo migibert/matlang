@@ -1,0 +1,36 @@
+// Judo structural configurations
+
+// Shizen-tai - natural upright standing posture with grips
+state ShizenTai roles {
+    Tori, Uke
+}
+
+// Kumi-kata - gripping engagement (sleeve and lapel)
+state KumiKata roles {
+    Tori, Uke
+}
+
+// Kuzushi - opponent's balance broken
+state Kuzushi roles {
+    Tori, Uke
+}
+
+// Tsukuri - body fitted for throw entry
+state Tsukuri roles {
+    Tori, Uke
+}
+
+// Ne-waza - ground engagement
+state NeWaza roles {
+    Tori, Uke
+}
+
+// Osaekomi - pin hold established
+state Osaekomi roles {
+    Tori, Uke
+}
+
+// Turtle - defensive shell on all fours
+state Turtle roles {
+    Tori, Uke
+}

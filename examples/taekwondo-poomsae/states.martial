@@ -1,0 +1,24 @@
+// Taekwondo stances (seogi)
+
+// Naranhi seogi - parallel ready stance
+state Naranhi
+
+// Ap kubi - front stance (long, deep)
+state ApKubi roles {
+    Wen, Orun
+}
+
+// Ap seogi - walking stance (short, natural)
+state ApSeogi roles {
+    Wen, Orun
+}
+
+// Dwit kubi - back stance, weight on rear leg
+state DwitKubi roles {
+    Wen, Orun
+}
+
+// Beom seogi - tiger stance, weight almost entirely on rear leg
+state BeomSeogi roles {
+    Wen, Orun
+}

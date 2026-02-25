@@ -1,0 +1,26 @@
+roles {
+    top
+    bottom
+    neutral
+}
+
+anatomy Head
+anatomy Elbow
+anatomy Knee
+
+state Standing roles { Neutral }
+state ClosedGuard roles { Top, Bottom }
+state Mount roles { Top, Bottom }
+
+strike Jab: Head
+submission Armbar: Elbow
+takedown DoubleLeg
+reversal ScissorSweep
+
+sequence BasicFlow:
+    Jab
+    Jab
+    DoubleLeg: Standing[neutral] -> ClosedGuard[top]
+    DoubleUnder: ClosedGuard[top] -> SideControl[top]
+    KneeDrive: SideControl[top] -> Mount[top]
+    Armbar

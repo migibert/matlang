@@ -1,0 +1,41 @@
+// Aikido structural configurations
+
+// Ai-hanmi - mutual stance, same foot forward
+state AiHanmi roles {
+    Tori, Uke
+}
+
+// Gyaku-hanmi - reverse stance, opposite feet forward
+state GyakuHanmi roles {
+    Tori, Uke
+}
+
+// Katate-dori - single wrist grab
+state KatateDori roles {
+    Tori, Uke
+}
+
+// Shomen-uchi - overhead strike commitment
+state ShomenUchi roles {
+    Tori, Uke
+}
+
+// Irimi - entered off the line
+state Irimi roles {
+    Tori, Uke
+}
+
+// Tenkan - pivoted position after redirection
+state Tenkan roles {
+    Tori, Uke
+}
+
+// Kuzushi - opponent's balance broken
+state Kuzushi roles {
+    Tori, Uke
+}
+
+// Zanshin - completed technique, awareness maintained
+state Zanshin roles {
+    Tori, Uke
+}

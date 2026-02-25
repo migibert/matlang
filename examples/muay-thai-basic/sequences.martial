@@ -1,20 +1,40 @@
 // Muay Thai combinations and sequences
 
-// Classic striking combo - all self-transitions
+// Classic jab, cross, low kick, middle kick
+sequence JabCrossLowMiddle:
+    Jab: StrikingRange[Orthodox] -> StrikingRange[Orthodox]
+    Cross: StrikingRange[Orthodox] -> StrikingRange[Orthodox]
+    RearLegLowKick: StrikingRange[Orthodox] -> KickingRange[Orthodox]
+    LeadLegMiddleKick: KickingRange[Orthodox] -> StrikingRange[Orthodox]
+
+// Jab, cross into clinch entry
 sequence JabCrossClinch:
     Jab: StrikingRange[Orthodox] -> StrikingRange[Orthodox]
     Cross: StrikingRange[Orthodox] -> StrikingRange[Orthodox]
     ClinchEntry: StrikingRange[Orthodox] -> ThaiClinch[Dominant]
 
-// Kicks from orthodox stance
-sequence LowKickCombo:
+// Teep to low kick setup
+sequence TeepToLowKick:
+    LeadTeep: KickingRange[Orthodox] -> StrikingRange[Orthodox]
     Jab: StrikingRange[Orthodox] -> StrikingRange[Orthodox]
-    LeadLegLowKick: StrikingRange[Orthodox] -> StrikingRange[Orthodox]
-    Cross: StrikingRange[Orthodox] -> StrikingRange[Orthodox]
-    RearLegLowKick: StrikingRange[Orthodox] -> StrikingRange[Orthodox]
+    RearLegLowKick: StrikingRange[Orthodox] -> KickingRange[Orthodox]
+    Cross: KickingRange[Orthodox] -> StrikingRange[Orthodox]
 
-// From clinch
+// Clinch knee sequence
 sequence ClinchKneeSequence:
     KneeStrike: ThaiClinch[Dominant] -> ThaiClinch[Dominant]
     KneeStrike2: ThaiClinch[Dominant] -> ThaiClinch[Dominant]
     BreakClinch: ThaiClinch[Dominant] -> StrikingRange[Orthodox]
+
+// Elbow from clinch transition
+sequence ClinchToElbow:
+    ClinchEntry: StrikingRange[Orthodox] -> SingleCollarTie[Dominant]
+    PullAndElbow: SingleCollarTie[Dominant] -> SingleCollarTie[Dominant]
+    DisengageToPunching: SingleCollarTie[Dominant] -> StrikingRange[Orthodox]
+
+// Low kick combinations
+sequence LowKickCombo:
+    Jab: StrikingRange[Orthodox] -> StrikingRange[Orthodox]
+    LeadLegLowKick: StrikingRange[Orthodox] -> KickingRange[Orthodox]
+    Cross: KickingRange[Orthodox] -> StrikingRange[Orthodox]
+    RearLegLowKick: StrikingRange[Orthodox] -> KickingRange[Orthodox]

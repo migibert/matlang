@@ -51,6 +51,13 @@ make test
 # Test on example systems
 mat validate examples/bjj-basic
 mat validate examples/muay-thai-basic
+mat validate examples/boxing-combos
+mat validate examples/karate-heian
+mat validate examples/taekwondo-poomsae
+mat validate examples/judo-newaza
+mat validate examples/aikido-kata
+mat validate examples/jujitsu-kata
+mat validate examples/wrestling-folkstyle
 mat stats examples/bjj-basic
 mat dot examples/muay-thai-basic | dot -Tpng > test.png
 ```

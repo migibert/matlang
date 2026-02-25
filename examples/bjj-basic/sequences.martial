@@ -1,21 +1,55 @@
-// BJJ sequences - ordered action progressions
+// BJJ technique sequences
 
-sequence BasicTakedownToGuard:
-    Takedown: Standing[Neutral] -> ClosedGuard[Top]
+// Guard pull to De La Riva to berimbolo back take
+sequence GuardPullToBerimbolo:
+    SitAndPull: Standing[Neutral] -> ClosedGuard[Bottom]
+    HipEscape: ClosedGuard[Bottom] -> OpenGuard[Bottom]
+    DeLaRivaHook: OpenGuard[Bottom] -> DeLaRivaGuard[Bottom]
+    Babybolo: DeLaRivaGuard[Bottom] -> Back[Top]
 
-sequence GuardPassSequence:
-    OpenGuard: ClosedGuard[Top] -> OpenGuard[Top]
-    PassToSide: OpenGuard[Top] -> SideControl[Top]
+// Classic toreando guard pass from standing
+sequence ToreandoPass:
+    BreakClosedGuard: ClosedGuard[Top] -> OpenGuard[Top]
+    ToreandoPass: Headquarters[Top] -> SideControl[Top]
 
-sequence SideToMount:
-    TransitionToKneeOnBelly: SideControl[Top] -> KneeOnBelly[Top]
+// Side control to mount progression
+sequence SideControlToMount:
+    Crossface: SideControl[Top] -> SideControl[Top]
+    KneePop: SideControl[Top] -> KneeOnBelly[Top]
     MountEntry: KneeOnBelly[Top] -> Mount[Top]
 
-sequence MountToSubmission:
-    ArmbarSetup: Mount[Top] -> ArmbarPosition[Top]
-    FinishArmbar: ArmbarPosition[Top] -> ArmbarPosition[Top]
+// Mount to armbar finish
+sequence MountToArmbar:
+    HighMount: Mount[Top] -> Mount[Top]
+    Armbar: Mount[Top] -> Mount[Top]
 
+// Triangle from closed guard
+sequence TriangleFromGuard:
+    BreakPosture: ClosedGuard[Bottom] -> ClosedGuard[Bottom]
+    Overhook: ClosedGuard[Bottom] -> ClosedGuard[Bottom]
+    Losange: ClosedGuard[Bottom] -> ClosedGuard[Bottom]
+    AngleAndSqueeze: ClosedGuard[Bottom] -> ClosedGuard[Bottom]
+
+// Half guard sweep to back take
+sequence HalfGuardSweep:
+    GetUnderhook: HalfGuard[Bottom] -> HalfGuard[Bottom]
+    DogFight: HalfGuard[Bottom] -> HalfGuard[Bottom]
+    ComeUpOnTop: HalfGuard[Bottom] -> SideControl[Top]
+
+// Turtle attack to rear mount
+sequence TurtleToRearMount:
+    SnapdownToTurtle: Standing[Neutral] -> TurtlePosition[Top]
+    SeatbeltGrip: TurtlePosition[Top] -> TurtlePosition[Top]
+    HooksIn: TurtlePosition[Top] -> RearMount[Top]
+
+// Mount escape to half guard recovery
 sequence MountEscape:
     BridgeAndShrimp: Mount[Bottom] -> HalfGuard[Bottom]
     RecoverClosedGuard: HalfGuard[Bottom] -> ClosedGuard[Bottom]
+
+// Gift wrap from side control to back mount
+sequence GiftWrapToBack:
+    TransitionToKesa: SideControl[Top] -> KesaGatame[Top]
+    GiftWrapGrip: KesaGatame[Top] -> KesaGatame[Top]
+    RollToBackMount: KesaGatame[Top] -> RearMount[Top]
 

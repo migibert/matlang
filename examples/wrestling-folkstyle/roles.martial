@@ -1,0 +1,5 @@
+// Folkstyle wrestling roles
+
+roles {
+    Offensive, Defensive, Neutral
+}

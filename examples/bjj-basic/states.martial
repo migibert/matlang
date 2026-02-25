@@ -1,31 +1,69 @@
-// Basic BJJ states
+// BJJ positions
 
+// Standing - both players upright
 state Standing
 
+// Closed guard - legs locked around opponent's waist
 state ClosedGuard roles {
     Top, Bottom
 }
 
+// Open guard - feet on hips/biceps, no lock
 state OpenGuard roles {
     Top, Bottom
 }
 
+// De La Riva guard - outside hook on lead leg, sleeve grip
+state DeLaRivaGuard roles {
+    Top, Bottom
+}
+
+// Half guard - one leg entangled
 state HalfGuard roles {
     Top, Bottom
 }
 
+// Headquarters - standing over seated guard, pants grip at knees
+state Headquarters roles {
+    Top, Bottom
+}
+
+// Side control - chest to chest, perpendicular
 state SideControl roles {
     Top, Bottom
 }
 
+// Kesa gatame - scarf hold, head and arm controlled
+state KesaGatame roles {
+    Top, Bottom
+}
+
+// Knee on belly - dominant pressure position
 state KneeOnBelly roles {
     Top, Bottom
 }
 
+// Mount - sitting on opponent's torso
 state Mount roles {
     Top, Bottom
 }
 
+// Rear mount - back control with hooks
+state RearMount roles {
+    Top, Bottom
+}
+
+// Turtle - defensive shell on all fours
+state TurtlePosition roles {
+    Top, Bottom
+}
+
+// Armbar position - hips elevated, arm isolated
 state ArmbarPosition roles {
+    Top, Bottom
+}
+
+// Triangle position - legs forming a figure-four around head and arm
+state TrianglePosition roles {
     Top, Bottom
 }

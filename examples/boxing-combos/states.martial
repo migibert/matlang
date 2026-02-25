@@ -1,0 +1,19 @@
+// Boxing range states
+
+// Long range - jab distance, outside foot reach
+state LongRange
+
+// Mid range - cross and hook distance
+state MidRange roles {
+    Orthodox, Southpaw
+}
+
+// Inside range - uppercut and clinch distance
+state InsideRange roles {
+    Orthodox, Southpaw
+}
+
+// Clinch - bodies locked, referee break range
+state Clinch roles {
+    Orthodox, Southpaw
+}

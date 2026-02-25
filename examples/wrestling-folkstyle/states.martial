@@ -1,0 +1,54 @@
+// Folkstyle wrestling positions
+
+// Neutral stance - both wrestlers standing, no dominant tie
+state NeutralStance
+
+// Collar tie - single hand on back of neck
+state CollarTie roles {
+    Offensive, Defensive
+}
+
+// Underhook battle - fighting for inside position
+state Underhook roles {
+    Offensive, Defensive
+}
+
+// Double underhooks - body lock control
+state DoubleUnderhooks roles {
+    Offensive, Defensive
+}
+
+// Single leg - one leg captured
+state SingleLeg roles {
+    Offensive, Defensive
+}
+
+// Double leg - both legs attacked
+state DoubleLeg roles {
+    Offensive, Defensive
+}
+
+// Front headlock - head and arm control from above
+state FrontHeadlock roles {
+    Offensive, Defensive
+}
+
+// Back control - behind the opponent, standing or mat
+state BackControl roles {
+    Offensive, Defensive
+}
+
+// Top ride - top position on the mat, opponent on belly
+state TopRide roles {
+    Offensive, Defensive
+}
+
+// Referee position - bottom wrestler on all fours
+state RefereePosition roles {
+    Offensive, Defensive
+}
+
+// Legs in (riding with leg hooks)
+state LegsIn roles {
+    Offensive, Defensive
+}

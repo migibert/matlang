@@ -1,0 +1,40 @@
+// Folkstyle wrestling sequences
+
+// Collar tie to snapdown to front headlock series
+sequence SnapdownSeries:
+    InitialContact: NeutralStance[Neutral] -> CollarTie[Offensive]
+    SnapDown: CollarTie[Offensive] -> FrontHeadlock[Offensive]
+    GoAround: FrontHeadlock[Offensive] -> BackControl[Offensive]
+    MatReturn: BackControl[Offensive] -> TopRide[Offensive]
+
+// Single leg from underhook - run the pipe finish
+sequence SingleLegRunPipe:
+    HandFight: NeutralStance[Neutral] -> Underhook[Offensive]
+    ShootSingle: Underhook[Offensive] -> SingleLeg[Offensive]
+    RunThePipe: SingleLeg[Offensive] -> SingleLeg[Offensive]
+    FinishToMat: SingleLeg[Offensive] -> TopRide[Offensive]
+
+// Double leg blast through
+sequence DoubleLegBlast:
+    HandFight: NeutralStance[Neutral] -> CollarTie[Offensive]
+    LevelChange: CollarTie[Offensive] -> DoubleLeg[Offensive]
+    DriveThrough: DoubleLeg[Offensive] -> DoubleLeg[Offensive]
+    CutTheCorner: DoubleLeg[Offensive] -> TopRide[Offensive]
+
+// Body lock takedown from double underhooks
+sequence BodyLockTakedown:
+    PummelInside: NeutralStance[Neutral] -> Underhook[Offensive]
+    SecondUnderhook: Underhook[Offensive] -> DoubleUnderhooks[Offensive]
+    BodyLockTrip: DoubleUnderhooks[Offensive] -> TopRide[Offensive]
+
+// Bottom wrestling: stand up from referee position
+sequence StandUp:
+    WhistleStart: RefereePosition[Defensive] -> RefereePosition[Defensive]
+    HandControl: RefereePosition[Defensive] -> RefereePosition[Defensive]
+    PostAndStand: RefereePosition[Defensive] -> NeutralStance[Neutral]
+
+// Top ride: leg riding series
+sequence LegRideSeries:
+    ChopTheArm: TopRide[Offensive] -> TopRide[Offensive]
+    InsertNearLeg: TopRide[Offensive] -> LegsIn[Offensive]
+    TurnForPin: LegsIn[Offensive] -> LegsIn[Offensive]

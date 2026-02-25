@@ -1,0 +1,28 @@
+// Traditional Jujitsu kata sequences
+
+// Kote-gaeshi (wrist reversal) from wrist grab
+sequence KoteGaeshi:
+    WristGrab: Standing[Tori] -> KatateDori[Tori]
+    StepOffline: KatateDori[Tori] -> Kuzushi[Tori]
+    WristReversal: Kuzushi[Tori] -> Zanshin[Tori]
+
+// O-goshi (major hip throw) from lapel grab
+sequence OGoshiSequence:
+    LapelGrab: Standing[Tori] -> MunadoriGrab[Tori]
+    EnterAndLoadHip: MunadoriGrab[Tori] -> HipLoaded[Tori]
+    ExecuteThrow: HipLoaded[Tori] -> GroundPin[Tori]
+    CompleteWithPin: GroundPin[Tori] -> Zanshin[Tori]
+
+// Ude-garami (entangled arm lock) from clinch
+sequence UdeGarami:
+    ClinchEngage: Standing[Tori] -> Clinch[Tori]
+    BreakBalance: Clinch[Tori] -> Kuzushi[Tori]
+    TakedownToPin: Kuzushi[Tori] -> GroundPin[Tori]
+    ApplyArmLock: GroundPin[Tori] -> JointLock[Tori]
+
+// Seoi-nage (shoulder throw) from lapel grab, transition to ground control
+sequence SeoiNageToPin:
+    LapelGrab: Standing[Tori] -> MunadoriGrab[Tori]
+    TurnInAndLoad: MunadoriGrab[Tori] -> HipLoaded[Tori]
+    ShoulderThrow: HipLoaded[Tori] -> GroundPin[Tori]
+    MaintainControl: GroundPin[Tori] -> Zanshin[Tori]

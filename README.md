@@ -84,9 +84,12 @@ state Mount roles {
 ### Define Sequences (`sequences.martial`)
 
 ```
-sequence GuardPass:
-    BreakPosture: Standing[Neutral] -> ClosedGuard[Top]
-    PassGuard: ClosedGuard[Top] -> Mount[Top]
+sequence TakedownToMount:
+    AnklePick: Standing[Neutral] -> OpenGuard[Top]
+    StepAside: OpenGuard[Top] -> Headquarters[Top]
+    KneeCut: Headquarters[Top] -> SideControl[Top]
+    KneeDrive: SideControl[Top] -> Mount[Top]
+    Ezekiel: Mount[Top] -> Mount[Top]
 ```
 
 ### Validate Your System
@@ -131,7 +134,7 @@ JSON structure:
     },
     {
       "state": "ClosedGuard",
-      "role": "Top"
+      "role": "Bottom"
     }
   ],
   "edges": [
@@ -142,10 +145,10 @@ JSON structure:
       },
       "to": {
         "state": "ClosedGuard",
-        "role": "Top"
+        "role": "Bottom"
       },
-      "action": "Takedown",
-      "sequence": "BasicTakedownToGuard"
+      "action": "SitAndPull",
+      "sequence": "GuardPullToBerimbolo"
     }
   ]
 }
@@ -170,16 +173,17 @@ mat stats examples/bjj-basic
 Output:
 ```
 Graph Statistics for 'bjj-basic':
-  Nodes: 10
-  Edges: 9
-  Self-loops: 1
+  Nodes: 17
+  Edges: 29
+  Self-loops: 11
 
   Source nodes (no incoming edges):
+    - ClosedGuard[Top]
     - Mount[Bottom]
     - Standing[Neutral]
 
   Sink nodes (no outgoing edges):
-    - ClosedGuard[Bottom]
+    - RearMount[Top]
 ```
 
 ## Language Specification
@@ -222,10 +226,17 @@ sequence BasicSweep:
 
 ## Examples
 
-Two example systems are included:
+Seven example systems are included, showcasing different martial arts traditions:
 
-- **`examples/bjj-basic/`**: Brazilian Jiu-Jitsu with guard passes and sweeps
-- **`examples/muay-thai-basic/`**: Muay Thai with clinch techniques (demonstrates self-transitions)
+- **`examples/bjj-basic/`**: Brazilian Jiu-Jitsu — guard pulls, passes, sweeps, submissions, and escapes (14 positions, 9 sequences)
+- **`examples/muay-thai-basic/`**: Muay Thai — striking combos, clinch work, kicks, elbows (4 ranges, 6 sequences)
+- **`examples/boxing-combos/`**: Boxing — classic combinations from jab-cross to body attacks and southpaw counters (4 ranges, 5 sequences)
+- **`examples/karate-heian/`**: Shotokan Karate — Heian Shodan and Heian Nidan kata (4 stances, 5 sequences)
+- **`examples/taekwondo-poomsae/`**: Taekwondo — Taegeuk Il Jang and Ee Jang poomsae (5 stances, 6 sequences)
+- **`examples/judo-newaza/`**: Judo — throw combinations and ground transitions, including failed uchi-mata chaining to ouchi-gari (7 configurations, 4 sequences)
+- **`examples/aikido-kata/`**: Aikido — Ikkyo, Irimi-nage, Shiho-nage, and Kote-gaeshi kata (8 configurations, 4 sequences)
+- **`examples/jujitsu-kata/`**: Traditional Jujitsu — throws, pins, and joint locks (9 configurations, 4 sequences)
+- **`examples/wrestling-folkstyle/`**: Folkstyle Wrestling — takedowns, mat wrestling, and escapes (11 positions, 6 sequences)
 
 Try them:
 
@@ -233,6 +244,9 @@ Try them:
 mat validate examples/bjj-basic
 mat stats examples/bjj-basic
 mat dot examples/bjj-basic | dot -Tpng > bjj.png
+
+mat validate examples/judo-newaza
+mat validate examples/karate-heian
 ```
 
 ## Development
@@ -245,11 +259,13 @@ make test
 cargo test
 ```
 
-All 23 unit tests embedded in the source files:
+23 unit tests embedded in the source files:
 - Lexer: 6 tests
-- Parser: 6 tests  
+- Parser: 6 tests
 - Semantic: 6 tests
 - Graph: 5 tests
+
+21 integration tests validating all example systems and fixtures.
 
 ### Building
 
@@ -267,6 +283,14 @@ make dist        # Create distribution tarball
 - **Graph** ([src/graph.rs](src/graph.rs)): State transition graph analysis
 - **AST** ([src/ast.rs](src/ast.rs)): Abstract syntax tree types
 - **CLI** ([src/main.rs](src/main.rs)): Command-line interface
+
+## Design Decisions
+
+Key design decisions are documented as Architecture Decision Records in [decisions/](decisions/):
+
+- [ADR-001](decisions/001-generic-actions-over-typed-keywords.md): Why actions are generic names rather than typed keywords (`strike`, `submission`, `takedown`, etc.)
+- [ADR-002](decisions/002-triggers-as-state-granularity.md): Why triggers and dilemmas are modeled through state granularity rather than new syntax
+- [ADR-003](decisions/003-grouping-over-inheritance.md): Why state grouping is preferred over inheritance for organizing related positions
 
 ## License
 

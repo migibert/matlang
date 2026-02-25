@@ -1,0 +1,33 @@
+// Aikido kata sequences - basic technique progressions
+
+// Ikkyo (first teaching) from katate-dori
+// Wrist grab -> enter and control elbow -> break balance -> pin
+sequence IkkyoFromKatateDori:
+    WristGrab: GyakuHanmi[Tori] -> KatateDori[Tori]
+    IrimiEnter: KatateDori[Tori] -> Irimi[Tori]
+    ElbowControl: Irimi[Tori] -> Kuzushi[Tori]
+    IkkyoPin: Kuzushi[Tori] -> Zanshin[Tori]
+
+// Irimi-nage (entering throw) from shomen-uchi
+// Overhead strike -> blend and enter -> break balance -> throw
+sequence Iriminage:
+    StrikeInitiation: AiHanmi[Tori] -> ShomenUchi[Tori]
+    BlendAndEnter: ShomenUchi[Tori] -> Irimi[Tori]
+    BreakBalance: Irimi[Tori] -> Kuzushi[Tori]
+    CompleteThrow: Kuzushi[Tori] -> Zanshin[Tori]
+
+// Shiho-nage (four-direction throw) from katate-dori
+// Wrist grab -> pivot offline -> break balance -> throw in any direction
+sequence ShihoNage:
+    WristGrab: AiHanmi[Tori] -> KatateDori[Tori]
+    TenkanPivot: KatateDori[Tori] -> Tenkan[Tori]
+    RaiseAndCut: Tenkan[Tori] -> Kuzushi[Tori]
+    ShihoNageThrow: Kuzushi[Tori] -> Zanshin[Tori]
+
+// Kote-gaeshi (wrist turn) from shomen-uchi
+// Overhead strike -> blend and redirect -> pivot -> wrist lock throw
+sequence KoteGaeshi:
+    StrikeInitiation: AiHanmi[Tori] -> ShomenUchi[Tori]
+    BlendAndRedirect: ShomenUchi[Tori] -> Tenkan[Tori]
+    ApplyWristTurn: Tenkan[Tori] -> Kuzushi[Tori]
+    KoteGaeshiThrow: Kuzushi[Tori] -> Zanshin[Tori]

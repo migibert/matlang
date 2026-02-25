@@ -1,0 +1,6 @@
+// Judo roles
+// Tori (technique performer) and Uke (technique receiver)
+
+roles {
+    Tori, Uke
+}

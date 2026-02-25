@@ -1,0 +1,6 @@
+// Shotokan karate kata roles
+// Hidari (left) and Migi (right) indicate which side is forward
+
+roles {
+    Hidari, Migi
+}
